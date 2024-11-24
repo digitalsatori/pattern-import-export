@@ -1,13 +1,15 @@
-[![Runbot Status](https://runbot.odoo-community.org/runbot/badge/flat//12.0.svg)](https://runbot.odoo-community.org/runbot/repo/github-com-oca-pattern-import-export-)
-[![Build Status](https://travis-ci.com/OCA/pattern-import-export.svg?branch=12.0)](https://travis-ci.com/OCA/pattern-import-export)
-[![codecov](https://codecov.io/gh/OCA/pattern-import-export/branch/12.0/graph/badge.svg)](https://codecov.io/gh/OCA/pattern-import-export)
-[![Translation Status](https://translation.odoo-community.org/widgets/pattern-import-export-12-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/pattern-import-export-12-0/?utm_source=widget)
+
+<!-- /!\ Non OCA Context : Set here the badge of your runbot / runboat instance. -->
+[![Pre-commit Status](https://github.com/shopinvader/pattern-import-export/actions/workflows/pre-commit.yml/badge.svg?branch=14.0)](https://github.com/shopinvader/pattern-import-export/actions/workflows/pre-commit.yml?query=branch%3A14.0)
+[![Build Status](https://github.com/shopinvader/pattern-import-export/actions/workflows/test.yml/badge.svg?branch=14.0)](https://github.com/shopinvader/pattern-import-export/actions/workflows/test.yml?query=branch%3A14.0)
+[![codecov](https://codecov.io/gh/shopinvader/pattern-import-export/branch/14.0/graph/badge.svg)](https://codecov.io/gh/shopinvader/pattern-import-export)
+<!-- /!\ Non OCA Context : Set here the badge of your translation instance. -->
 
 <!-- /!\ do not modify above this line -->
 
 # Pattern Import Export
 
-Import Export Xlsx or csv file easily
+None
 
 <!-- /!\ do not modify below this line -->
 
@@ -19,7 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[pattern_import_export](pattern_import_export/) | 14.0.2.4.2 |  | Pattern for import or export
+[pattern_import_export](pattern_import_export/) | 14.0.2.9.0 |  | Pattern for import or export
 [pattern_import_export_csv](pattern_import_export_csv/) | 14.0.1.1.0 |  | Pattern for import or export from to CSV files
 [pattern_import_export_custom_header](pattern_import_export_custom_header/) | 14.0.1.0.1 |  | Allow to use custom headers names in export files
 [pattern_import_export_synchronize](pattern_import_export_synchronize/) | 14.0.1.0.0 | [![kevinkhao](https://github.com/kevinkhao.png?size=30px)](https://github.com/kevinkhao) [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) | Attachment Synchronize using patterns
@@ -33,6 +35,9 @@ addon | version | maintainers | summary
 
 This repository is licensed under [AGPL-3.0](LICENSE).
 
-However, each module can have a totally different license, as long as they adhere to OCA
+However, each module can have a totally different license, as long as they adhere to Shopinvader
 policy. Consult each module's `__manifest__.py` file, which contains a `license` key
 that explains its license.
+
+----
+<!-- /!\ Non OCA Context : Set here the full description of your organization. -->

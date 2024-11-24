@@ -103,15 +103,22 @@ class Base(models.AbstractModel):
                 res[key.replace(IDENTIFIER_SUFFIX, "")] = res.pop(key)
 
     def _convert_value_to_domain(self, field_name, value):
+        # fieldname may be None
+        # todo: rename field_name to prefix
         if isinstance(value, dict):
             domain = []
+            subdom = []
             for key, val in value.items():
                 if key == ".id":
                     # .id is internal db id, so we rename it
                     key = "id"
-                domain.append(("{}.{}".format(field_name, key), "=", val))
+                # field_name may be None
+                # then key = value directly
+                dom_key = f"{field_name}.{key}" if field_name else key
+                subdom += self._convert_value_to_domain(dom_key, val)
+            domain = subdom
         else:
-            domain = [(field_name, "=", value)]
+            domain = [[field_name, "=", value]]
         return domain
 
     def _get_domain_from_identifier_key(self, res):
@@ -120,9 +127,7 @@ class Base(models.AbstractModel):
         for key in list(res.keys()):
             if key.endswith(IDENTIFIER_SUFFIX):
                 field_name = key.replace(IDENTIFIER_SUFFIX, "")
-                domain = expression.AND(
-                    [domain, self._convert_value_to_domain(field_name, res[key])]
-                )
+                domain += self._convert_value_to_domain(field_name, res[key])
                 ident_keys.append(key)
         return domain, ident_keys
 
@@ -253,10 +258,10 @@ class Base(models.AbstractModel):
         for dbid, xid, record, info in super()._convert_records(records, log=log):
             # Note the log method is equal to messages.append
             # so log.__self__ return the messages list
-            messages = log.__self__
-            if messages and messages[-1]["rows"] == info["rows"]:
-                # we have a message for this item so we skip it from conversion
-                # so the record will be not imported
-                continue
-            else:
-                yield dbid, xid, record, info
+            if self._context.get("pattern_config"):
+                messages = log.__self__
+                if messages and messages[-1]["rows"] == info["rows"]:
+                    # we have a message for this item so we skip it from conversion
+                    # so the record will be not imported
+                    continue
+            yield dbid, xid, record, info
